@@ -1,0 +1,54 @@
+<form action="/tool" method="POST" data-tool-form>
+
+	<div>
+		<label for="name">Nom</label>
+		<input type="text" name="name" required minlength="2" placeholder="Ex: Vue.js">
+	</div>
+
+	<div>
+		<label for="description">Description</label>
+		<textarea name="description" required minlength="9" placeholder="..."></textarea>
+	</div>
+
+	<div>
+		<label url="name">URL</label>
+		<input type="url" name="url" required placeholder="https://example.com">
+	</div>
+
+	<div>
+		<p>Associer des catégories&nbsp;:</p>
+		<div>
+			<% for(let category of data.categories) { %>
+				<p>---</p>
+				<div>
+					<input tool-form-category-checkbox type="checkbox" name="categories[]" value="<%- category._id %>">
+					<label for="categories[]" value="<%- category._id %>"><%- category.name %></label>
+				</div>
+				<div class="tool-form__category-tags" tool-form-category-tags-<%-category._id%>>
+					<p>Associer des tags (<%- category.name %>)&nbsp;:</p>
+					<div>
+						<% for(let tag of data.tags) { %>
+							<% if (tag.category._id.toString() === category._id.toString()) { %>
+								<div>
+									<input type="checkbox" name="tags[]" value="<%- tag._id %>">
+									<label for="tags[]" value="<%- tag._id %>"><%- tag.name %></label>
+								</div>
+							<% } %>
+						<% } %>
+					</div>
+				</div>
+				<p>---</p>
+			<% } %>
+		</div>
+	</div>
+
+	<div>
+		<p>------------</p>
+		<input type="checkbox" id="isPublished" name="isPublished">
+		<label for="isPublished">Activé</label>
+		<p>------------</p>
+	</div>
+
+	<button type="submit">Ajouter</button>
+
+</form>

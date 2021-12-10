@@ -1,0 +1,11 @@
+/**
+  * TOOLS
+  */
+
+.tool-form__category-tags {
+  display: none;
+}
+
+.tool-form__category-tags.active {
+  display: block;
+}

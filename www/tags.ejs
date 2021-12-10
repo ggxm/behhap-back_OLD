@@ -1,0 +1,31 @@
+<!-- Importer le header en EJS -->
+<%- include('statics/header') -%>
+
+<main>
+	<h2>Tags</h2>
+	
+	<div>
+		<h3>Ajouter un tag</h3>
+		<%- include('components/form-tag', {data: data.data}) -%>
+	</div>
+	
+	<div>
+		<h3>Liste des tags</h3>
+		<p>TODO : Filtrer par catégorie</p>
+		<ul>
+			<% for(let item of data.data) { %>
+				<li>
+					<a href="/tag/<%- item._id %>"><%- item.name %></a>
+					<p>Catégorie&nbsp;: <%- item.category.name %></p>
+					<p>
+						<a href="/editTag/<%- item._id %>">Modifier</a>
+						<a href="/deleteTag/<%- item._id %>">Supprimer</a>
+					</p>
+				</li>
+			<% } %>
+		<ul>
+	</div>
+</main>
+
+<!-- Importer le footer en EJS -->
+<%- include('statics/footer') -%>

@@ -1,0 +1,38 @@
+<!-- Importer le header en EJS -->
+<%- include('statics/header') -%>
+
+<main>
+	<h2>Outil</h2>
+	
+	<div>
+		<h3>Détails de l'outil</h3>
+		<p>Nom : <%- data.data.name %> </p>
+		<p>Description : <%- data.data.description %> </p>
+		<p>URL : <a href="<%- data.data.url %>" target="_blank" rel="noopener noreferrer"><%- data.data.url %></a> </p>
+		<div>
+			<p>Catégories&nbsp;:</p>
+			<% for(let category of data.data.categories) { %>
+				<div>
+					<p><%- category.name %></p>
+					<div>
+						<span><%- category.name %> tags&nbsp;:</span>
+						<% for(let tag of data.data.tags) { %>
+							<% if (tag.category._id.toString() === category._id.toString()) { %>
+								<span>[<%- tag.name %>]</span>
+							<% } %>
+						<% } %>
+					</div>
+				</div>
+			<% } %>
+		</div>
+		<p>Date de création : <%- data.data.dateCreated %> </p>
+		<p>Date de modification : <%- data.data.dateModified %> </p>
+		<p>Status : <% if (data.data.isPublished) { %> Activé <% } else { %> Désactivé <% } %> </p>
+
+		<h3>Modifier l'outil</h3>
+		<%- include('components/form-tool-edit', {item: data.data}) -%>
+	</div>
+</main>
+
+<!-- Importer le footer en EJS -->
+<%- include('statics/footer') -%>

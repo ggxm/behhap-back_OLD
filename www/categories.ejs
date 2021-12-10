@@ -1,0 +1,29 @@
+<!-- Importer le header en EJS -->
+<%- include('statics/header') -%>
+
+<main>
+	<h2>Catégories</h2>
+	
+	<div>
+		<h3>Ajouter une catégorie</h3>
+		<%- include('components/form-category') -%>
+	</div>
+	
+	<div>
+		<h3>Liste des catégories</h3>
+		<ul>
+			<% for(let item of data.data) { %>
+				<li>
+					<a href="/category/<%- item._id %>"><%- item.name %></a>
+					<p>
+						<a href="/editCategory/<%- item._id %>">Modifier</a>
+						<a href="/deleteCategory/<%- item._id %>">Supprimer</a>
+					</p>
+				</li>
+			<% } %>
+		<ul>
+	</div>
+</main>
+
+<!-- Importer le footer en EJS -->
+<%- include('statics/footer') -%>

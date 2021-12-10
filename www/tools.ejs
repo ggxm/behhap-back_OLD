@@ -1,0 +1,46 @@
+<!-- Importer le header en EJS -->
+<%- include('statics/header') -%>
+
+<main>
+	<h2>Outils</h2>
+	
+	<div>
+		<h3>Ajouter un outil</h3>
+		<%- include('components/form-tool', {data: data.data}) -%>
+	</div>
+	
+	<div>
+		<h3>Liste des outils</h3>
+		<p>TODO : Filtrer par catégorie et tag</p>
+		<ul>
+			<% for(let item of data.data) { %>
+				<li>
+					<a href="/tool/<%- item._id %>"><%- item.name %></a>
+					<div>
+						<p>Catégories&nbsp;:</p>
+						<% for(let category of item.categories) { %>
+							<div>
+								<p><%- category.name %></p>
+								<div>
+									<span><%- category.name %> tags&nbsp;:</span>
+									<% for(let tag of item.tags) { %>
+										<% if (tag.category._id.toString() === category._id.toString()) { %>
+											<span> [<%- tag.name %>]</span>
+										<% } %>
+									<% } %>
+								</div>
+							</div>
+						<% } %>
+					</div>
+					<p>
+						<a href="/editTool/<%- item._id %>">Modifier</a>
+						<a href="/deleteTool/<%- item._id %>">Supprimer</a>
+					</p>
+				</li>
+			<% } %>
+		<ul>
+	</div>
+</main>
+
+<!-- Importer le footer en EJS -->
+<%- include('statics/footer') -%>

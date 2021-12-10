@@ -1,0 +1,22 @@
+<!-- Importer le header en EJS -->
+<%- include('statics/header') -%>
+
+<main>
+	<h2>Catégorie</h2>
+	
+	<div>
+		<h3>Détails de la catégorie</h3>
+		<p>Nom : <%- data.data.name %> </p>
+		<p>Date de création : <%- data.data.dateCreated %> </p>
+		<p>Date de modification : <%- data.data.dateModified %> </p>
+		<p>Status : <% if (data.data.isPublished) { %> Activé <% } else { %> Désactivé <% } %> </p>
+		
+		<div>
+			<a href="/editCategory/<%- data.data._id %>">Modifier</a>
+			<a href="/deleteCategory/<%- data.data._id %>">Supprimer</a>
+		</div>
+	</div>
+</main>
+
+<!-- Importer le footer en EJS -->
+<%- include('statics/footer') -%>
