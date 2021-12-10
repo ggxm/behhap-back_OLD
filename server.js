@@ -19,7 +19,7 @@ Server class
 class ServerClass {
 	constructor() {
 		this.server = express();
-		this.port = process.env.PORT;
+		this.port = process.env.PORT || 8080;
 		this.MongoDB = new MONGOclass();
 	}
 
